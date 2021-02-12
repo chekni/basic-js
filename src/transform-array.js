@@ -28,7 +28,7 @@ module.exports = function transform(arr) {
                         if (i > 2 && rule.get(array[i - 2]) != 1) result.pop();
                         break;
                     case -2:
-                        if (previousValue) result.push(previousValue);
+                        if (previousValue && i > 2 && rule.get(array[i - 2]) != 1) result.push(previousValue);
                         break;
                     case 1:
                         if (i !== array.length - 1) {
@@ -50,5 +50,3 @@ module.exports = function transform(arr) {
     }
     return new Error();
 };
-
-// console.log(transform([1, 2, 3, '--double-next', 1337, '--discard-prev', 4, 5]));
