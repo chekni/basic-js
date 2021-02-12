@@ -1,8 +1,7 @@
 const CustomError = require("../extensions/custom-error");
 
-module.exports = function transform(arr) {
-    if (arr) {
-        const array = [...arr];
+module.exports = function transform(array) {
+    if (array) {
         let result = [];
         const rule = new Map([
             ['--discard-next', 1],
@@ -25,10 +24,13 @@ module.exports = function transform(arr) {
 
                 switch (flag) {
                     case -1:
-                        if (i > 2 && rule.get(array[i - 2]) != 1) result.pop();
+                        if (result.length > 0) {
+                            if (i > 1 && rule.get(array[i - 2]) != 1) result.pop();
+                        }
+
                         break;
                     case -2:
-                        if (previousValue && i > 2 && rule.get(array[i - 2]) != 1) result.push(previousValue);
+                        if (i > 1 && rule.get(array[i - 2]) != 1) result.push(previousValue);
                         break;
                     case 1:
                         if (i !== array.length - 1) {
@@ -48,5 +50,5 @@ module.exports = function transform(arr) {
         }
         return result;
     }
-    return new Error();
+    throw new Error();
 };
