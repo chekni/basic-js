@@ -1,9 +1,9 @@
 const CustomError = require("../extensions/custom-error");
 
 module.exports = function getSeason(date) {
-    // for (let key in date) {
-    //     if (typeof date[key] != 'number') throw new Error('Error');
-    // }
+    for (let key in date) {
+        if (typeof date[key] != 'number') throw new Error('Error');
+    }
     if (date) {
         Object.freeze(date);
         const d = new Date(date);
