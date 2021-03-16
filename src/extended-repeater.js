@@ -29,14 +29,13 @@ module.exports = function repeater(str, options) {
                     break;
             }
         }
-        let resultAdditionalRepeatString = '';
+        let resultAdditionalRepeatString = addition;
         if (additionRepeatTimes) {
-            resultAdditionalRepeatString = addition;
             for (let i = 1; i < additionRepeatTimes; i++) {
                 resultAdditionalRepeatString += additionSeparator + addition;
             }
         }
-        if (repeatTimes) {
+        if (repeatTimes > 1) {
             let resultRepeatString = str + resultAdditionalRepeatString;
             result = resultRepeatString;
             for (let i = 1; i < repeatTimes; i++) {
@@ -44,6 +43,11 @@ module.exports = function repeater(str, options) {
             }
             return result;
         }
-        return str + addition;
+        return str + resultAdditionalRepeatString;
     }
 };
+
+
+// repeater('q62Q1BUHzT', { repeatTimes: 1, separator: 'kntiUBYlD8', addition: 'NJlyh2T5Ff', additionRepeatTimes: 5, additionSeparator: 'F8qlqGevyf' });
+
+// 'q62Q1BUHzTNJlyh2T5FfF8qlqGevyfNJlyh2T5FfF8qlqGevyfNJlyh2T5FfF8qlqGevyfNJlyh2T5FfF8qlqGevyfNJlyh2T5Ff'
